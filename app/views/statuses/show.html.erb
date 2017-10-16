@@ -1,8 +1,12 @@
 
+<div class="proposals-separator">
+  <div class="round">Statut conseillé</div>
+  <i class="fa fa-caret-down" aria-hidden="true"></i>
+</div>
+
 <div class="proposal-container">
   <div class="top">
     <div class="proposal-title-container">
-      <div class="title-type">PROPOSITION</div>
       <div class="title"><%= @status.proposition %></div>
     </div>
   </div>
@@ -34,10 +38,14 @@
   </div>
 </div>
 
+<div class="proposals-separator">
+  <div class="round">Alternative</div>
+  <i class="fa fa-caret-down" aria-hidden="true"></i>
+</div>
+
 <div class="proposal-container">
   <div class="top">
     <div class="proposal-title-container">
-      <div class="title-type">CONTRE PROPOSITION</div>
       <div class="title"><%= @status.counter_proposal %></div>
     </div>
   </div>

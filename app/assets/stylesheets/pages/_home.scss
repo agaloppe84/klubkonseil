@@ -74,6 +74,7 @@
 .proposal-title-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   .title-type {
     font-family: "Source Sans Pro";
     font-weight: 300;
@@ -84,9 +85,8 @@
     font-family: "Source Sans Pro";
     font-weight: 400;
     font-size: 23px;
-    padding: 4px 16px;
+    padding: 4px 15px;
     border-radius: 3px;
-    margin-left: 10px;
     border: 1px solid rgba(55,55,55,0.5);
   }
 }
@@ -123,8 +123,6 @@
   flex-direction: column;
   width: 100%;
   padding: 30px 10%;
-  margin-bottom: 50px;
-  margin-top: 50px;
   background-color: white;
   .top {
     width: 100%;
@@ -380,6 +378,35 @@ input[type=radio]:checked + .check-box {
   margin-bottom: 5px;
 }
 
+.proposals-separator {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  .round {
+    width: 180px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: #1DCD9F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+    font-size: 15px;
+    color: white;
+  }
+  i {
+    position: absolute;
+    bottom: -22px;
+    font-size: 38px;
+    color: #1DCD9F;
+  }
+}
 
 
 
