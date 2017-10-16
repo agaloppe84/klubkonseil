@@ -405,6 +405,7 @@ input[type=radio]:checked + .check-box {
     bottom: -22px;
     font-size: 38px;
     color: #1DCD9F;
+    left: calc(50% - 10px);
   }
 }
 
