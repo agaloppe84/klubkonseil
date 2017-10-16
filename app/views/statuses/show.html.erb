@@ -1,0 +1,71 @@
+
+<div class="proposal-container">
+  <div class="top">
+    <div class="proposal-title-container">
+      <div class="title-type">PROPOSITION</div>
+      <div class="title"><%= @status.proposition %></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="item">
+      <div class="title">Centre de formalités des entreprises</div>
+      <div class="content"><%= @status.which_cfe %></div>
+    </div>
+    <div class="item">
+      <div class="title">Mode de comptabilité</div>
+      <div class="content"><%= @status.which_compta %></div>
+    </div>
+    <div class="item">
+      <div class="title">Titre du dirigeant</div>
+      <div class="content"><%= @status.which_boss_title %></div>
+    </div>
+    <div class="item">
+      <div class="title">Couverture sociale</div>
+      <div class="content"><%= @status.which_social_cover %></div>
+    </div>
+    <div class="item">
+      <div class="title">Charges sociales</div>
+      <div class="content"><%= @status.which_social_charges %></div>
+    </div>
+    <div class="item">
+      <div class="title">Imposition</div>
+      <div class="content"><%= @status.which_imposition %></div>
+    </div>
+  </div>
+</div>
+
+<div class="proposal-container">
+  <div class="top">
+    <div class="proposal-title-container">
+      <div class="title-type">CONTRE PROPOSITION</div>
+      <div class="title"><%= @status.counter_proposal %></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="reasons"><%= @status.proposal_reasons %></div>
+    <div class="item">
+      <div class="title">Centre de formalités des entreprises</div>
+      <div class="content"><%= which_cfe_view(@status, @status.counter_proposal) %></div>
+    </div>
+    <div class="item">
+      <div class="title">Mode de comptabilité</div>
+      <div class="content"><%= which_compta_view(@status, @status.counter_proposal) %></div>
+    </div>
+    <div class="item">
+      <div class="title">Titre du dirigeant</div>
+      <div class="content"><%= which_boss_title_view(@status.counter_proposal) %></div>
+    </div>
+    <div class="item">
+      <div class="title">Couverture sociale</div>
+      <div class="content"><%= which_social_cover_view(@status, @status.which_boss_title) %></div>
+    </div>
+    <div class="item">
+      <div class="title">Charges sociales</div>
+      <div class="content"><%= which_social_charges_view(@status, @status.counter_proposal, @status.which_cfe, @status.which_boss_title) %></div>
+    </div>
+    <div class="item">
+      <div class="title">Imposition</div>
+      <div class="content"><%= which_imposition_view(@status, @status.counter_proposal) %></div>
+    </div>
+  </div>
+</div>

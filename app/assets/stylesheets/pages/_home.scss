@@ -8,3 +8,211 @@
 .margins {
   padding: 50px 50px;
 }
+
+.simple_form.tools label {
+  font-weight: 300;
+}
+
+
+.radio_buttons label {
+  padding: 0;
+  width: 80px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  border-radius: 3px;
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+}
+
+
+
+.simple_form.tools input[type="radio"] {
+  display: none;
+}
+
+.simple_form.tools input[type="radio"]:checked + label {
+  color: rgba(255,255,255,0.9);
+  padding-left: 0;
+  background-color: black;
+}
+
+
+.form-flex {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dyn-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .first {
+    font-family: "Source Sans Pro";
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .middle {
+    margin-left: 8px;
+    margin-right: 8px;
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .last {
+    font-family: "Source Sans Pro";
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+
+.proposal-title-container {
+  display: flex;
+  align-items: center;
+  .title-type {
+    font-family: "Source Sans Pro";
+    font-weight: 300;
+    font-size: 23px;
+    opacity: 0.6;
+  }
+  .title {
+    font-family: "Source Sans Pro";
+    font-weight: 400;
+    font-size: 23px;
+    padding: 4px 16px;
+    border-radius: 3px;
+    margin-left: 10px;
+    border: 1px solid rgba(55,55,55,0.5);
+  }
+}
+
+
+.reasons {
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+
+.counter-proposal-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px 10%;
+  background-color: white;
+  margin-bottom: 50px;
+  .top {
+    width: 100%;
+    height: 30%;
+    margin-bottom: 20px;
+  }
+  .bottom {
+    width: 100%;
+    height: 70%;
+  }
+}
+
+.proposal-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px 10%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  background-color: white;
+  .top {
+    width: 100%;
+    height: 30%;
+    margin-bottom: 20px;
+  }
+  .bottom {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    .item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 14px;
+      .title {
+        font-family: "Source Sans Pro";
+        font-weight: 300;
+        font-size: 19px;
+        color: #44AF69;
+        margin-right: 6px;
+      }
+      .content {
+        font-family: "Source Sans Pro";
+        font-weight: 300;
+        font-size: 19px;
+      }
+    }
+  }
+}
+
+
+
+.check-box {
+  width: 145px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #1DCD9F;
+  color: #1DCD9F;
+  border-radius: 30px;
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+  font-size: 14px;
+  margin-right: 20px;
+  transition: 0.3s ease;
+}
+
+
+
+
+input[type=radio] {
+  display: none;
+}
+
+input[type=radio]:checked + .check-box {
+  color: white;
+  background-color: #1DCD9F;
+}
+
+
+.collection-check-boxes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 17px;
+}
+
+
+.checkbox-custom-container {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 768px) {
+  .collection-check-boxes {
+    flex-direction: column;
+  }
+  .dyn-text {
+    justify-content: center;
+  }
+  .check-box {
+    margin-right: 0;
+    margin-bottom: 8px;
+    width: 180px;
+  }
+}
+
+
+

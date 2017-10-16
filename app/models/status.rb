@@ -1,70 +1,28 @@
-class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :success]
+class Status < ApplicationRecord
 
-  def home
-    @statuses = ["MICRO", "EI", "EI-EIRL", "SARLU", "SASU", "SARL", "SAS"]
-  end
-
-  def dashboard
-    @user = current_user
-    @status = Status.new
-  end
-
-  def success
-    @r_1 = params[:tools][:question_1]
-    @r_2 = params[:tools][:question_2]
-    @r_3 = params[:tools][:question_3]
-    @r_4 = params[:tools][:question_4]
-    @r_5 = params[:tools][:question_5]
-    @r_6 = params[:tools][:question_6]
-    @r_7 = params[:tools][:question_7]
-
-    @responses_for_status = [@r_1, @r_2, @r_3, @r_4, @r_5, @r_6, @r_7]
-
-    @status = which_status(@responses_for_status)
-    @cfe = which_cfe(@responses_for_status, @status)
-    @compta_mode = which_compta(@responses_for_status, @status)
-    @titre_dirigeant = which_boss_title(@status)
-    @social_cover = which_social_cover(@responses_for_status, @titre_dirigeant)
-    @social_charges = which_social_charges(@responses_for_status, @status, @cfe, @titre_dirigeant)
-    @imposition = which_imposition(@responses_for_status, @status)
-    @contre_propo = counter_proposal(@responses_for_status, @status)
-    @reason = proposal_reasons(@responses_for_status, @status)
-
-  end
-
-
-  def which_status(responses_array)
-      response_1 = responses_array[0]
-      response_2 = responses_array[1]
-      response_3 = responses_array[2]
-      response_4 = responses_array[3]
-      response_5 = responses_array[4]
-      response_6 = responses_array[5]
-      response_7 = responses_array[6]
-
-      if response_1 == "Plusieurs"
-        if response_7 == "Oui"
+  def which_status
+      if q1 == "Plusieurs"
+        if q7 == "Oui"
           status = "SAS"
         else
-          if response_6 == "Oui"
+          if q6 == "Oui"
             status = "SAS"
           else
             status = "SARL"
           end
         end
       else
-        if response_4 == "Plus"
-          if response_7 == "Oui"
+        if q4 == "Plus"
+          if q7 == "Oui"
             status = "SASU"
           else
-            if response_6 == "Oui"
+            if q6 == "Oui"
               status = "SASU"
             else
-              if response_5 == "Faible"
+              if q5 == "Faible"
                 status = "EI"
               else
-                if response_5 == "Moyen"
+                if q5 == "Moyen"
                   status = "EI-EIRL"
                 else
                   status = "SARLU"
@@ -73,20 +31,20 @@ class PagesController < ApplicationController
             end
           end
         else
-          if response_7 == "Oui"
+          if q7 == "Oui"
             status = "SASU"
           else
-            if response_6 == "Oui"
-              if response_5 == "Faible"
+            if q6 == "Oui"
+              if q5 == "Faible"
                 status = "MICRO"
               else
                 status = "SASU"
               end
             else
-              if response_5 == "Faible"
+              if q5 == "Faible"
                 status = "MICRO"
               else
-                if response_5 == "Moyen"
+                if q5 == "Moyen"
                   status = "EI"
                 else
                   status = "SARLU"
@@ -99,60 +57,56 @@ class PagesController < ApplicationController
   end
 
 
-  def which_cfe(responses_array, status)
-    response_1 = responses_array[0]
-    response_2 = responses_array[1]
-     if response_1 == "Plusieurs"
-      if response_2 == "Artisan"
+  def which_cfe
+     if q1 == "Plusieurs"
+      if q2 == "Artisan"
         cfe = "CMA"
       else
         cfe = "CCI"
       end
     else
-      if response_2 == "Commercant"
+      if q2 == "Commercant"
         cfe = "CCI"
-      elsif response_2 == "Artisan"
+      elsif q2 == "Artisan"
         cfe = "CMA"
-      elsif response_2 == "Profession libérale"
-        if status == "SARLU" or status == "SASU"
+      elsif q2 == "Profession libérale"
+        if proposition == "SARLU" or proposition == "SASU"
           cfe = "CCI"
         else
           cfe = "URSSAF"
         end
-      elsif response_2 == "Je ne sais pas"
+      elsif q2 == "Je ne sais pas"
         cfe = "Explications ....."
       end
     end
   end
 
-  def which_compta(responses_array, status)
-    response_4 = responses_array[3]
-    if response_4 == "Plus"
+  def which_compta
+    if q4 == "Plus"
       compta_mode = "Réel"
-    elsif status == "MICRO"
+    elsif proposition == "MICRO"
       compta_mode = "Franchise de TVA"
-    elsif status != "MICRO"
+    elsif proposition != "MICRO"
       compta_mode = "Franchise de TVA ou réel"
     end
   end
 
-  def which_boss_title(status)
-    if status == "SASU"
+  def which_boss_title
+    if proposition == "SASU"
       titre_dirigeant = "P-DG assimilé salarié"
-    elsif status == "SAS"
+    elsif proposition == "SAS"
       titre_dirigeant = "Assimilés salariés"
-    elsif status == "SARL"
+    elsif proposition == "SARL"
       titre_dirigeant = "Associé majoritaire = Gérant TNS , Associé minoritaire = Gérant assimilé salarié ou TNS"
     else
       titre_dirigeant = "Gérant TNS"
     end
   end
 
-  def which_social_cover(responses_array, title)
-    response_2 = responses_array[1]
-    titre_dirigeant = title
+  def which_social_cover
+    titre_dirigeant = self.which_boss_title
 
-    if response_2 == "Profession libérale"
+    if q2 == "Profession libérale"
       social_cover = "URSSAF"
     elsif titre_dirigeant == "Assimilés salariés" or titre_dirigeant == "P-DG assimilé salarié"
       social_cover = "URSSAF"
@@ -161,60 +115,58 @@ class PagesController < ApplicationController
     end
   end
 
-  def which_social_charges(responses_array, status, cfe, title)
-    titre_dirigeant = title
-    response_3 = responses_array[2]
+  def which_social_charges
+    titre_dirigeant = self.which_boss_title
+    cfe = self.which_cfe
+
     if titre_dirigeant == "Gérant TNS"
-      if status == "MICRO"
-        if response_3 == "prestation de service"
+      if proposition == "MICRO"
+        if q3 == "prestation de service"
           if cfe == "URSSAF"
             social_charges = "22,5% du CA"
           else
             social_charges = "22,7% du CA"
           end
         else
-          if response_3 == "Vente de marchandises"
+          if q3 == "Vente de marchandises"
             social_charges = "13,10% du CA"
           else
             social_charges = "22,7% du CA sur les prestations, 13,10% du CA sur la vente de marchandises"
           end
         end
-      elsif status == "EI"
+      elsif proposition == "EI"
         social_charges = "45% des bénéfices"
-      elsif status == "EI-EIRL"
+      elsif proposition == "EI-EIRL"
         social_charges = "45% des prélèvements réels + les bénéfices"
       else
         social_charges = "45% de la rémunération + les bénéfices si ceux-ci sont supérieurs à 10% du capital"
       end
-    elsif status == "SARL"
+    elsif proposition == "SARL"
       social_charges = "45% de la rémunération pour le gérant TNS et 78% de la rémunération pour le gérant assimilé salarié"
     else
       social_charges = "78% de la rémunération"
     end
   end
 
-  def which_imposition(responses_array, status)
-    response_1 = responses_array[0]
-    response_2 = responses_array[1]
-    response_3 = responses_array[2]
-    if response_1 == "Plusieurs"
+   def which_imposition
+    if q1 == "Plusieurs"
       imposition = "IS = 15% du RCAI jusqu'a 38000 € puis 28%"
     else
-      if status == "MICRO"
-        if response_3 == "prestation de service"
-          if response_2 == "Profession libérale"
+      if proposition == "MICRO"
+        if q3 == "prestation de service"
+          if q2 == "Profession libérale"
             imposition = "IR avec 34% d'abattement forfaitaire sur le CA"
           else
             imposition = "IR avec 50% d'abattement forfaitaire sur le CA"
           end
-        elsif response_3 == "Vente de marchandises"
+        elsif q3 == "Vente de marchandises"
           imposition = "IR avec 71% d'abattement forfaitaire sur le CA"
         else
           imposition = "IR avec 50% d'abattement forfaitaire sur le CA sur les prestations, 71% d'abattement forfaitaire sur le CA sur les ventes"
         end
-      elsif status == "EI"
+      elsif proposition == "EI"
         imposition = "IR sur 45% des bénéfices majorés sauf si adhesion à un CGA"
-      elsif status == "EI-EIRL"
+      elsif proposition == "EI-EIRL"
         imposition = "IS = 15% du RCAI jusqu'a 38000 € puis 28% ou IR sur les prélévements réels + 45% des bénéfices"
       else
         imposition = "IS = 15% du RCAI jusqu'a 38000 € puis 28% ou IR sur la rémunération + bénéfices"
@@ -222,27 +174,25 @@ class PagesController < ApplicationController
     end
   end
 
-  def counter_proposal(responses_array, status)
-    response_1 = responses_array[0]
-    response_4 = responses_array[3]
-    if response_1 == "Plusieurs"
-      if status == "SARL"
+  def counter_proposal
+    if q1 == "Plusieurs"
+      if proposition == "SARL"
         contre_propo = "SAS"
       else
         contre_propo = "SARL"
       end
     else
-      if response_4 == "Moins"
-        if status == "MICRO"
+      if q4 == "Moins"
+        if proposition == "MICRO"
           contre_propo = "EI"
         else
           contre_propo = "MICRO"
         end
       else
-        if status == "EI"
+        if proposition == "EI"
           contre_propo = "SARLU"
         else
-          if status == "SARLU"
+          if proposition == "SARLU"
             contre_propo = "SASU"
           else
             contre_propo = "SARLU"
@@ -252,8 +202,7 @@ class PagesController < ApplicationController
     end
   end
 
-
-  def proposal_reasons(responses_array, status)
+  def proposal_reasons
     reason_1 = "En SARL, les choses ne seraient pas très différente. La création de l'entreprise et la lettre de mission du comptable seraient peut-être moins cher. Vous ne serez pas Assimilés Salariés mais Travailleur Non Salarié et donc paieraient vos cotisations sociales toujours à l'URSSAF mais à hauteur de 45% de votre rémunération. Point Important, vos bénéfices seraient également soumis à cotisation sociale s'il dépasse 10% du Capital Social de votre société ce qui ne sera pas le cas en SAS. En somme, c'est un statut intéressant car moins cher mais moins convoyeur de droit social. "
     reason_2 = "En SAS, les choses ne seraient pas très différente. La création de l'entreprise et la lettre de mission du comptable seraient peut-être plus cher. Vous serez tous Assimilés Salariés au lieu d'être TNS (pour le majoritaire) et donc paieraient vos cotisations sociales toujours à l'URSSAF mais à hauteur de 78% de votre rémunération. Votre droit social (notamment retraite) serait meilleur. Point Important, vos bénéfices ne seraient jamais soumis à cotisation sociale. En somme, c'est un statut intéressant car plus convoyeur de droit social et d'éventuel bonus (par les dividendes) mais plus cher. "
     reason_3 = "En SARLU, les choses ne seraient pas très différente. La création de l'entreprise et la lettre de mission du comptable seraient peut-être moins cher. Vous ne serez pas Assimilé Salarié mais Travailleur Non Salarié et donc paieraient vos cotisations sociales toujours à l'URSSAF mais à hauteur de 45% de votre rémunération. Point Important, vos bénéfices seraient également soumis à cotisation sociale s'il dépasse 10% du Capital Social de votre société ce qui ne sera pas le cas en SASU. En somme, c'est un statut intéressant car moins cher mais moins convoyeur de droit social. "
@@ -277,73 +226,66 @@ class PagesController < ApplicationController
     reason_21 = "En SARLU, les choses seraient très différentes qu'en Micro-Entreprise. La Micro-Entreprise est un statut très simple, très stable, sans risque mais avec une limite de CA à respecter chaque année. En SARLU, il n'y aura aucune limite. Vous créerez une personnalité juridique à part entière et devrez travailler avec un comptable. La création de l'entreprise, la lettre de mission, la base minimum de cotisations sociales du RSI seraient à payer quelque soit la réussite de l'entreprise. En somme, il s'agit de décider si vous créer une entreprise pour démarrer (la Micro-Entreprise) au risque de devoir limiter votre développement ou si vous créer une entreprise qui ne changera pas de statut (la SARLU) au risque de devoir lui venir en aide financièrement si le lancement est insatisfaisant ou si vous décidez de cesser l'activité."
     reason_22 = "En EI, les choses seraient différentes. Il n'y aura plus aucune limitation de CA. En EI, ce n'est pas votre CA l'important, mais vos bénéfices. Il n'y aura pas de déclaration de CA à faire mais c'est votre déclaration d'IR qui amènera des régularisations de la part du RSI. Vos cotisations seront toujours à payer au RSI, mais représenteront 45% de vos bénéfices. Vous ne serez pas obligé de travailler avec un comptable mais vous devrez adhérer à un Centre de Gestion Agréé pour éviter une majoration de vos bénéfices. En somme, c'est un statut plus difficile à appréhender mais intéressant car il vous permettra de développer votre activité sans limite et avec moins de contraintes qu'une société (SARLU ou SASU)."
 
-
-
-    response_2 = responses_array[1]
-    response_4 = responses_array[3]
-    good_status = status
-
-
-    if response_2 == "Profession libérale"
-      if good_status == "Micro"
-        if response_4 == "Je ne sais pas"
+    if q2 == "Profession libérale"
+      if proposition == "Micro"
+        if q4 == "Je ne sais pas"
           reason_10
         else
           reason_11
         end
-      elsif good_status == "EI"
-        if response_4 == "Moins"
+      elsif proposition == "EI"
+        if q4 == "Moins"
           reason_9
         else
           reason_8
         end
-      elsif good_status == "SARLU"
-        if response_4 == "Moins"
+      elsif proposition == "SARLU"
+        if q4 == "Moins"
           reason_6
         else
           reason_5
         end
-      elsif good_status == "SASU"
-        if response_4 == "Moins"
+      elsif proposition == "SASU"
+        if q4 == "Moins"
           reason_4
         else
           reason_3
         end
-      elsif good_status == "SAS"
+      elsif proposition == "SAS"
         reason_1
-      elsif good_status == "SARL"
+      elsif proposition == "SARL"
         reason_2
       else
         reason_7
       end
     else
-      if good_status == "Micro"
-        if response_4 == "Je ne sais pas"
+      if proposition == "Micro"
+        if q4 == "Je ne sais pas"
           reason_21
         else
           reason_22
         end
-      elsif good_status == "EI"
-        if response_4 == "Moins"
+      elsif proposition == "EI"
+        if q4 == "Moins"
           reason_20
         else
           reason_19
         end
-      elsif good_status == "SARLU"
-        if response_4 == "Moins"
+      elsif proposition == "SARLU"
+        if q4 == "Moins"
           reason_17
         else
           reason_16
         end
-      elsif good_status == "SASU"
-        if response_4 == "Moins"
+      elsif proposition == "SASU"
+        if q4 == "Moins"
           reason_15
         else
           reason_14
         end
-      elsif good_status == "SAS"
+      elsif proposition == "SAS"
         reason_12
-      elsif good_status == "SARL"
+      elsif proposition == "SARL"
         reason_13
       else
         reason_18
@@ -353,15 +295,8 @@ class PagesController < ApplicationController
   end
 
 
+
+
+
+
 end
-
-
-
-
-
-
-
-
-
-
-

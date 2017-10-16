@@ -1,13 +1,49 @@
 
-<div class="text-center">
-  <h1><%= @status %></h1>
-  <h1><%= @cfe %></h1>
-  <h1><%= @compta_mode %></h1>
-  <h1><%= @titre_dirigeant %></h1>
-  <h1><%= @social_cover %></h1>
-  <h1><%= @social_charges %></h1>
-  <h1><%= @imposition %></h1>
+<div class="proposal-container">
+  <div class="top">
+    <div class="proposal-title-container">
+      <div class="title-type">PROPOSITION</div>
+      <div class="title"><%= @status %></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="item">
+      <div class="title">Centre de formalités des entreprises</div>
+      <div class="content"><%= @cfe %></div>
+    </div>
+    <div class="item">
+      <div class="title">Mode de comptabilité</div>
+      <div class="content"><%= @compta_mode %></div>
+    </div>
+    <div class="item">
+      <div class="title">Titre du dirigeant</div>
+      <div class="content"><%= @titre_dirigeant %></div>
+    </div>
+    <div class="item">
+      <div class="title">Couverture sociale</div>
+      <div class="content"><%= @social_cover %></div>
+    </div>
+    <div class="item">
+      <div class="title">Charges sociales</div>
+      <div class="content"><%= @social_charges %></div>
+    </div>
+    <div class="item">
+      <div class="title">Imposition</div>
+      <div class="content"><%= @imposition %></div>
+    </div>
+  </div>
 </div>
 
 
 
+<div class="counter-proposal-container">
+  <div class="top">
+    <div class="proposal-title-container">
+      <div class="title-type">CONTRE PROPOSITION</div>
+      <div class="title"><%= @contre_propo %></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="reasons"><%= @reason %></div>
+  </div>
+</div>

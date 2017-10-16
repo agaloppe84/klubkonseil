@@ -4,7 +4,14 @@
     <%= f.input :question_1, label: "Seul ou plusieurs ?", collection: ["Seul", "Plusieurs"] %>
     <%= f.input :question_2, label: "Quelle est votre profession ?", collection: ["Commercant", "Artisan", "Profession libérale", "Je ne sais pas"] %>
     <%= f.input :question_3, label: "Quelle est la nature de votre activité ?", collection: ["prestation de service", "Vente de marchandises", "Mixte"] %>
-    <%= f.input :question_4, label: "Allez vous faire .... de Chiffre d'Affaires", collection: ["Plus", "Moins", "Je ne sais pas"] %> <!-- 30000 si question_3 = presta 80000 si = vente -->
+
+    <div class="dyn-text">
+      <div class="first">Allez vous faire</div>
+      <div class="middle">...</div>
+      <div class="last">de Chiffre d'Affaires</div>
+    </div>
+    <%= f.input :question_4, label: false, collection: ["Plus", "Moins", "Je ne sais pas"] %> <!-- 30000 si question_3 = presta 80000 si = vente -->
+
     <%= f.input :question_5, label: "Votre projet entraine il un risque ?", collection: ["Faible", "Moyen", "Important"] %>
     <%= f.input :question_6, label: "Avez-vous peur de travailler avec le RSI ?", collection: ["Oui", "Non", "Sans opinion"] %>
     <%= f.input :question_7, label: "Envie ou besoin de secu forte ?", collection: ["Oui", "Non", "Sans opinion"] %>
@@ -12,3 +19,5 @@
   <% end %>
 
 </div>
+
+
