@@ -10,7 +10,7 @@
         <%= collection_radio_buttons(:status, :q1, ["Seul", "Plusieurs"], :capitalize, :capitalize) do |b| %>
           <label id="label-<%= b.text.capitalize %>">
             <%= b.radio_button %>
-            <div class="check-box" id="radio-<%= b.text.capitalize %>">
+            <div class="check-box" id="custom-checkbox-q1">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -26,7 +26,7 @@
         <%= collection_radio_buttons(:status, :q2, ["Commercant", "Artisan", "Profession libérale", "Je ne sais pas"], :capitalize, :capitalize) do |b| %>
           <label id="label-<%= b.text.capitalize %>">
             <%= b.radio_button %>
-            <div class="check-box" id="radio-<%= b.text.capitalize %>">
+            <div class="check-box" id="custom-checkbox-q2">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -40,9 +40,9 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q3, ["prestation de service", "Vente de marchandises", "Mixte"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q3">
             <%= b.radio_button %>
-            <div class="check-box" id="radio-<%= b.text.capitalize %>">
+            <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -53,14 +53,14 @@
      <div class="checkbox-custom-container">
       <div class="dyn-text">
         <div class="first">Allez vous faire</div>
-        <div class="middle">...</div>
-        <div class="last">de Chiffre d'Affaires</div>
+        <div class="middle" id="dyn-middle">...</div>
+        <div class="last">de CA ?</div>
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q4, ["Plus", "Moins", "Je ne sais pas"], :capitalize, :capitalize) do |b| %>
           <label id="label-<%= b.text.capitalize %>">
             <%= b.radio_button %>
-            <div class="check-box" id="radio-<%= b.text.capitalize %>">
+            <div class="check-box" id="custom-checkbox-q4">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -68,11 +68,55 @@
       </div>
     </div>
 
+    <div class="checkbox-custom-container">
+      <div class="dyn-text">
+        <div class="first">Votre projet entraine il un risque ?</div>
+      </div>
+      <div class="collection-check-boxes">
+        <%= collection_radio_buttons(:status, :q5, ["Faible", "Moyen", "Important"], :capitalize, :capitalize) do |b| %>
+          <label id="label-<%= b.text.capitalize %>">
+            <%= b.radio_button %>
+            <div class="check-box" id="custom-checkbox-q5">
+              <div class="b-text-font"><%= b.text %></div>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
 
-    <%= f.input :q5, label: "Votre projet entraine il un risque ?", collection: ["Faible", "Moyen", "Important"] %>
-    <%= f.input :q6, label: "Avez-vous peur de travailler avec le RSI ?", collection: ["Oui", "Non", "Sans opinion"] %>
-    <%= f.input :q7, label: "Envie ou besoin de secu forte ?", collection: ["Oui", "Non", "Sans opinion"] %>
-    <%= f.submit %>
+    <div class="checkbox-custom-container">
+      <div class="dyn-text">
+        <div class="first">Avez-vous peur de travailler avec le RSI ?</div>
+      </div>
+      <div class="collection-check-boxes">
+        <%= collection_radio_buttons(:status, :q6, ["Oui", "Non", "Sans opinion"], :capitalize, :capitalize) do |b| %>
+          <label id="label-<%= b.text.capitalize %>">
+            <%= b.radio_button %>
+            <div class="check-box" id="custom-checkbox-q6">
+              <div class="b-text-font"><%= b.text %></div>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="checkbox-custom-container">
+      <div class="dyn-text">
+        <div class="first">Envie ou besoin de secu forte ?</div>
+      </div>
+      <div class="collection-check-boxes">
+        <%= collection_radio_buttons(:status, :q7, ["Oui", "Non", "Sans opinion"], :capitalize, :capitalize) do |b| %>
+          <label id="label-<%= b.text.capitalize %>">
+            <%= b.radio_button %>
+            <div class="check-box" id="custom-checkbox-q7">
+              <div class="b-text-font"><%= b.text %></div>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <%= f.submit "Voir le satut" %>
   <% end %>
 
 </div>
