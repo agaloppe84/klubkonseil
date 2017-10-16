@@ -1,7 +1,5 @@
 $('#custom-checkbox-q3 input').change(function () {
   var optionSelected = $(this).val();
-
-  console.log(optionSelected);
   if (optionSelected == "Prestation de service") {
     $('#dyn-middle').text("30 000");
   }

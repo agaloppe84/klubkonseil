@@ -1,9 +1,7 @@
-
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#Outil-1" aria-controls="home" role="tab" data-toggle="tab">Outil-1</a></li>
-    <li role="presentation"><a href="#Outil-2" aria-controls="profile" role="tab" data-toggle="tab">Outil-2</a></li>
-    <li role="presentation"><a href="#Outil-3" aria-controls="messages" role="tab" data-toggle="tab">Outil-3</a></li>
-    <li role="presentation"><a href="#Outil-4" aria-controls="settings" role="tab" data-toggle="tab">Outil-4</a></li>
+<div class="dashboard-container">
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#Outil-1" aria-controls="home" role="tab" data-toggle="tab">Votre statut</a></li>
+    <li role="presentation"><a href="#Outil-2" aria-controls="profile" role="tab" data-toggle="tab">Votre compte</a></li>
   </ul>
 
 
@@ -12,12 +10,24 @@
       <%= render "statuses/new" %>
     </div>
     <div role="tabpanel" class="tab-pane" id="Outil-2">
-      <div class="tool-container">Test Outil 2</div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="Outil-3">
-      <div class="tool-container">Test Outil 3</div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="Outil-4">
-      <div class="tool-container">Test Outil 4</div>
+
+      <div class="proposal-container">
+        <div class="bottom">
+          <div class="item">
+            <div class="title">Email</div>
+            <div class="content"><%= @user.email %></div>
+          </div>
+          <div class="item">
+            <div class="title">Connecté depuis</div>
+            <div class="content"><%= "#{((Time.current - @user.current_sign_in_at) / 1.minutes).round(0)} minutes" %></div>
+          </div>
+          <div class="item">
+            <div class="title">IP de connexion</div>
+            <div class="content"><%= @user.current_sign_in_ip %></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
