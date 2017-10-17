@@ -10,3 +10,9 @@ $('#custom-checkbox-q3 input').change(function () {
     $('#dyn-middle').text("80 000 €");
   }
  });
+
+$(document).ready (function() {
+  setTimeout(function() {
+    $('.alert').fadeOut('fast');
+  }, 4000);
+});

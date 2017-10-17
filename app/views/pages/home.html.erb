@@ -5,5 +5,10 @@
 
 
 <div class="home-link-container">
-  <%= link_to "Choisir un statut", dashboard_path %>
+  <% if user_signed_in? %>
+    <%= link_to "Choisir un statut", dashboard_path %>
+  <% else %>
+    <%= link_to "S'inscrire", new_user_registration_path %>
+  <% end %>
 </div>
+

@@ -474,6 +474,7 @@ input[type=radio]:checked + .check-box {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  background-color: white;
   width: 100%;
   height: calc(100vh - 140px);
   padding: 30px;
@@ -481,10 +482,21 @@ input[type=radio]:checked + .check-box {
     height: 90%;
     width: 100%;
     input {
-      height: 55px;
-      font-size: 20px;
-      padding-right: 25px;
-      padding-left: 25px;
+      height: 45px;
+      border: 1px solid #1DCD9F;
+      font-size: 18px;
+      padding-right: 17px;
+      padding-left: 17px;
+      box-shadow: none !important;
+      border-radius: 5px;
+    }
+    input:focus {
+      height: 45px;
+      border: 2px solid #1DCD9F;
+      font-size: 18px;
+      padding-right: 17px;
+      padding-left: 17px;
+      box-shadow: none !important;
     }
     input:-webkit-autofill {
       background-color: white !important;
@@ -548,6 +560,69 @@ input[type=radio]:checked + .check-box {
 .custom-tab-with-icon {
   position: relative;
 }
+
+.custom-navbar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 33px;
+  color: white;
+  font-size: 13px;
+  background-color: #1DCD9F;
+  border-radius: 3px;
+}
+
+.custom-dropdown-link {
+  font-size: 14px;
+  color: #1DCD9F;
+  font-weight: 300;
+}
+
+.alert {
+  border: none;
+  background-color: #1DCD9F;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.native-button {
+  padding: 8px 38px !important;
+  background-color: #1DCD9F;
+  color: white;
+  border: none !important;
+  align-self: center;
+  font-size: 15px !important;
+  font-weight: 300;
+  height: 40px !important;
+}
+
+.form-actions-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
