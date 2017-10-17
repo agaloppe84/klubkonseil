@@ -1,5 +1,6 @@
 class StatusesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index, :create, :new]
+  before_action :set_user
 
 
   def show
@@ -10,7 +11,8 @@ class StatusesController < ApplicationController
   end
 
   def new
-    @status = Status.new
+    @user = current_user
+    @status = @user.statuses.new
   end
 
   def create
@@ -33,7 +35,7 @@ class StatusesController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def status_params

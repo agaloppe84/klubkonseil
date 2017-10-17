@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
-    @status = Status.new
+    @status = @user.statuses.new
   end
 
   def success

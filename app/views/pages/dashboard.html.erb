@@ -14,7 +14,7 @@
             <div class="bottom">
               <div class="item">
                 <div class="title">Votre recherche du</div>
-                <div class="content"><%= "Recherche du #{status.created_at.strftime("%d %B %Y")}" %></div>
+                <div class="content"><%= "Recherche du #{status.created_at.strftime("%d %B %Y") if status.persisted? }" %></div>
               </div>
               <div class="item">
                 <div class="title">Statuts conseillés</div>
