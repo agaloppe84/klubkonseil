@@ -1,50 +1,46 @@
 <div class="dashboard-container">
   <ul class="nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a href="#Outil-1" aria-controls="home" role="tab" data-toggle="tab">Votre statut</a></li>
-    <li role="presentation"><a href="#Outil-2" aria-controls="profile" role="tab" data-toggle="tab">Votre compte</a></li>
+    <li role="presentation" class="active"><a href="#Outil-1" aria-controls="home" role="tab" data-toggle="tab">Quel statut ?</a></li>
+    <li role="presentation">
+      <a href="#Outil-2" aria-controls="profile" role="tab" data-toggle="tab" id="custom-tab-with-icon">
+        <%= "Historique" %>
+        <% if (@user.statuses.length - 1) > 0 %>
+          <div class="tab-icon"><%= "#{@user.statuses.length - 1}" %></div>
+        <% end %>
+      </a>
+    </li>
   </ul>
 
 
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="Outil-1">
-      <% if @user.statuses.length > 3 %>
-        <% @user.statuses.each do |status| %>
 
-          <div class="proposal-container-statuses">
-            <div class="bottom">
+    <div role="tabpanel" class="tab-pane active" id="Outil-1">
+      <%= render "statuses/new" %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="Outil-2">
+      <div class="text-center margins">
+       <% @user.statuses.each_with_index do |status, index| %>
+          <% if status.persisted? %>
+            <div class="history-custom-container">
+              <div class="item-header">
+                <div class="title-bold">Konseil</div>
+                <div class="content"><div class="history-index"><%= index + 1 %></div></div>
+              </div>
               <div class="item">
                 <div class="title">Votre recherche du</div>
-                <div class="content"><%= "Recherche du #{status.created_at.strftime("%d %B %Y") if status.persisted? }" %></div>
+                <div class="content"><%= "#{status.created_at.strftime("%d %B %Y")}" %></div>
               </div>
               <div class="item">
                 <div class="title">Statuts conseillés</div>
                 <div class="content"><%= "#{status.proposition} ou #{status.counter_proposal}" %></div>
               </div>
+              <%= link_to status_path(status) do %>
+                <div class="history-custom-link">Voir le détail</div>
+              <% end %>
             </div>
-          </div>
-
+          <% end %>
         <% end %>
-      <% else %>
-        <%= render "statuses/new" %>
-      <% end %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="Outil-2">
-
-      <div class="proposal-container">
-        <div class="bottom">
-          <div class="item">
-            <div class="title">Email</div>
-            <div class="content"><%= @user.email %></div>
-          </div>
-          <div class="item">
-            <div class="title">Connecté depuis</div>
-            <div class="content"><%= "#{((Time.current - @user.current_sign_in_at) / 1.minutes).round(0)} minutes" %></div>
-          </div>
-          <div class="item">
-            <div class="title">IP de connexion</div>
-            <div class="content"><%= @user.current_sign_in_ip %></div>
-          </div>
-        </div>
       </div>
 
     </div>
