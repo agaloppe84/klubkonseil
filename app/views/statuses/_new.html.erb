@@ -2,6 +2,7 @@
 
   <%= simple_form_for @status do |f| %>
 
+    <%= f.input :user_id, input_html: { value: @user.id }, as: :hidden %>
     <div class="checkbox-custom-container">
       <div class="dyn-text">
         <div class="first">Etes-vous seul ou plusieurs ?</div>

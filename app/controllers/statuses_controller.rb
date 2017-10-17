@@ -1,6 +1,7 @@
 class StatusesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index, :create, :new]
 
+
   def show
     @status = Status.find(params[:id])
   end
@@ -13,7 +14,8 @@ class StatusesController < ApplicationController
   end
 
   def create
-    @status = Status.new(status_params)
+    @user = current_user
+    @status = @user.statuses.new(status_params)
     @status.proposition = @status.which_status
     if @status.save
       redirect_to status_path(@status)
@@ -30,8 +32,12 @@ class StatusesController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
   def status_params
-    params.require(:status).permit(:q1, :q2, :q3, :q4, :q5, :q6, :q7)
+    params.require(:status).permit(:q1, :q2, :q3, :q4, :q5, :q6, :q7, :user_id)
   end
 
 end

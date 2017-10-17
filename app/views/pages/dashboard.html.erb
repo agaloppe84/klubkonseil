@@ -7,7 +7,26 @@
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="Outil-1">
-      <%= render "statuses/new" %>
+      <% if @user.statuses.length > 3 %>
+        <% @user.statuses.each do |status| %>
+
+          <div class="proposal-container-statuses">
+            <div class="bottom">
+              <div class="item">
+                <div class="title">Votre recherche du</div>
+                <div class="content"><%= "Recherche du #{status.created_at.strftime("%d %B %Y")}" %></div>
+              </div>
+              <div class="item">
+                <div class="title">Statuts conseillés</div>
+                <div class="content"><%= "#{status.proposition} ou #{status.counter_proposal}" %></div>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+      <% else %>
+        <%= render "statuses/new" %>
+      <% end %>
     </div>
     <div role="tabpanel" class="tab-pane" id="Outil-2">
 

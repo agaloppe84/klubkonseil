@@ -1,4 +1,5 @@
 class Status < ApplicationRecord
+  belongs_to :user
 
   def which_status
       if q1 == "Plusieurs"
