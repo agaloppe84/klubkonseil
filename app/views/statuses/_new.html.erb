@@ -41,7 +41,7 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q3, ["prestation de service", "Vente de marchandises", "Mixte"], :capitalize, :capitalize) do |b| %>
-          <label id="custom-checkbox-q3">
+          <label class="custom-checkbox-q3">
             <%= b.radio_button %>
             <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
@@ -54,7 +54,7 @@
      <div class="checkbox-custom-container">
       <div class="dyn-text">
         <div class="first">Allez vous faire</div>
-        <div class="middle" id="dyn-middle">...</div>
+        <div class="middle dyn-middle">...</div>
         <div class="last">de CA ?</div>
       </div>
       <div class="collection-check-boxes">
