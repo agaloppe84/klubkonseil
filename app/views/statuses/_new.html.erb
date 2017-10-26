@@ -9,7 +9,7 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q1, ["Seul", "Plusieurs"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q1">
             <%= b.radio_button %>
             <div class="check-box" id="custom-checkbox-q1">
               <div class="b-text-font"><%= b.text %></div>
@@ -25,9 +25,9 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q2, ["Commercant", "Artisan", "Profession libérale", "Je ne sais pas"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q2">
             <%= b.radio_button %>
-            <div class="check-box" id="custom-checkbox-q2">
+            <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -59,9 +59,9 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q4, ["Plus", "Moins", "Je ne sais pas"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q4">
             <%= b.radio_button %>
-            <div class="check-box" id="custom-checkbox-q4">
+            <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -75,9 +75,9 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q5, ["Faible", "Moyen", "Important"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q5">
             <%= b.radio_button %>
-            <div class="check-box" id="custom-checkbox-q5">
+            <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -91,9 +91,9 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q6, ["Oui", "Non", "Sans opinion"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q6">
             <%= b.radio_button %>
-            <div class="check-box" id="custom-checkbox-q6">
+            <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -107,9 +107,9 @@
       </div>
       <div class="collection-check-boxes">
         <%= collection_radio_buttons(:status, :q7, ["Oui", "Non", "Sans opinion"], :capitalize, :capitalize) do |b| %>
-          <label id="label-<%= b.text.capitalize %>">
+          <label id="custom-checkbox-q7">
             <%= b.radio_button %>
-            <div class="check-box" id="custom-checkbox-q7">
+            <div class="check-box">
               <div class="b-text-font"><%= b.text %></div>
             </div>
           </label>
@@ -117,7 +117,7 @@
       </div>
     </div>
 
-    <%= f.submit "Voir le satut" %>
+    <%= f.submit "valider", class:"btn-submit" %>
   <% end %>
 
 </div>

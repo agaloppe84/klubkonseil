@@ -6,7 +6,9 @@
 }
 
 .margins {
-  padding: 50px 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 50px;
 }
 
 .simple_form.tools label {
@@ -237,7 +239,8 @@ input[type=radio]:checked + .check-box {
 .history-custom-container {
   margin-bottom: 50px;
   padding: 22px;
-  border: 1px solid #1DCD9F;
+  border: none;
+  background-color: white;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -311,7 +314,7 @@ input[type=radio]:checked + .check-box {
   font-size: 12px;
 }
 
-@media (max-width: 768px) {
+
   .collection-check-boxes {
     flex-direction: column;
   }
@@ -323,12 +326,13 @@ input[type=radio]:checked + .check-box {
     margin-bottom: 8px;
     width: 220px;
   }
-}
+
 
 .nav-pills li a {
   width: 140px;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-weight: 400;
   font-size: 14px;
   color: #1DCD9F;
@@ -348,9 +352,6 @@ input[type=radio]:checked + .check-box {
   align-items: center;
   background-color: #1DCD9F;
   color: white;
-  position: absolute;
-  top: 14px;
-  right: 44px;
 }
 
 .nav-pills li.active a .tab-icon {
@@ -390,7 +391,7 @@ input[type=radio]:checked + .check-box {
 }
 
 
-@media (max-width: 768px) {
+
   .nav-pills li {
     width: 50%;
     margin-left: 0;
@@ -404,7 +405,7 @@ input[type=radio]:checked + .check-box {
   .nav-pills li a {
     width: 100%;
   }
-}
+
 
 
 .logo-navbar {
@@ -609,22 +610,88 @@ input[type=radio]:checked + .check-box {
   margin-top: 50px;
 }
 
+.desktop-layout {
+  display: flex;
+}
+
+.desktop-left {
+  width: 50%;
+  background-color: rgb(230,235,230);
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.content-left {
+  background-color: white;
+  border-radius: 4px;
+  height: calc(100vh - 60px);
+  position: sticky;
+  top: 30px;
+  padding: 30px;
+}
+
+.content-left-header {
+  display: flex;
+  align-items: center;
+  color: #1DCD9F;
+  margin-bottom: 15px;
+  i {
+    margin-right: 10px;
+    font-size: 22px;
+  }
+}
+
+.dynamic-info-text {
+  font-family: "Source Sans Pro";
+  font-weight: 200;
+  font-size: 24px;
+}
+
+.dynamic-content {
+  color: rgb(100,100,100);
+  font-weight: 300;
+  font-size: 20px;
+}
 
 
 
 
+@media (min-width: 768px) {
+  .nav-pills li {
+    width: 50%;
+    margin-left: 0;
+    background-color: #e6ebe6;
+    padding: 25px;
+  }
+  .nav-pills li a {
+    border-radius: 50px;
+  }
+  .tab-content {
+    background-color: #e6ebe6;
+  }
+  .checkbox-custom-container {
+    margin-bottom: 50px;
+    padding: 22px;
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+  }
+}
 
+.btn-submit {
+  padding: 10px 45px;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-size: 19px;
+  background-color: #1DCD9F;
+  border: none;
+  border-radius: 30px;
+  color: white;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media (max-width: 768px) {
+  .nav {
+    margin-bottom: 40px;
+  }
+}
