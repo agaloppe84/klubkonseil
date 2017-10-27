@@ -14,14 +14,31 @@
   <div class="dashboard-container" style="width: 50%;">
     <ul class="nav nav-pills" role="tablist">
       <li role="presentation" class="active"><a href="#Outil-1" aria-controls="home" role="tab" data-toggle="tab">Quel statut ?</a></li>
-      <li role="presentation">
-        <a href="#Outil-2" aria-controls="profile" role="tab" data-toggle="tab" id="custom-tab-with-icon">
-          <%= "Historique" %>
-          <% if (@user.statuses.length - 1) > 0 %>
-            <div class="tab-icon"><%= "#{@user.statuses.length - 1}" %></div>
-          <% end %>
-        </a>
-      </li>
+
+      <% if (@user.statuses.length - 1) == 0 %>
+
+        <li role="presentation">
+          <a href="#" id="custom-tab-with-icon">
+            <%= "Historique" %>
+            <% if (@user.statuses.length - 1) > 0 %>
+              <div class="tab-icon"><%= "#{@user.statuses.length - 1}" %></div>
+            <% end %>
+          </a>
+        </li>
+
+      <% else %>
+
+        <li role="presentation">
+          <a href="#Outil-2" aria-controls="profile" role="tab" data-toggle="tab" id="custom-tab-with-icon">
+            <%= "Historique" %>
+            <% if (@user.statuses.length - 1) > 0 %>
+              <div class="tab-icon"><%= "#{@user.statuses.length - 1}" %></div>
+            <% end %>
+          </a>
+        </li>
+
+      <% end %>
+
     </ul>
 
 

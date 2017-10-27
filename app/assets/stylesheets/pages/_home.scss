@@ -654,7 +654,9 @@ input[type=radio]:checked + .check-box {
   font-size: 20px;
 }
 
-
+.tab-content {
+  min-height: calc(100vh - 60px);
+}
 
 
 @media (min-width: 768px) {
