@@ -1,0 +1,53 @@
+$triangle-width: 14px;
+$triangle-height: 14px;
+$triangle-bordered: false;
+$triangle-border-width: 1px;
+$triangle-border-color: lightgrey;
+$triangle-background-color: rgb(200,200,200);
+$triangle-border-radius: 3px;
+$positions: ("top": 225deg, "right": 315deg, "bottom": 45deg, "left": 135deg);
+
+@each $position, $deg in $positions {
+  .carret-container-#{$position} {
+    width: $triangle-width;
+    height: $triangle-height;
+    top: -22%;
+    right: -22%;
+    overflow: hidden;
+    position: absolute;
+    transform: rotate($deg);
+    border-bottom-right-radius: $triangle-border-radius;
+    border-bottom: $triangle-border-width solid $triangle-background-color;
+    border-right: $triangle-border-width solid $triangle-background-color;
+  }
+}
+
+.carret {
+  width: 100%;
+  height: 141.4%;
+  background-color: $triangle-background-color;
+  transform: rotate(45deg) translateX(35%) translateY(-10%);
+}
+
+
+
+.droplist {
+  position: relative;
+  background-color: $triangle-background-color;
+  display: inline-block;
+}
+
+.droplist-container {
+  position: absolute;
+  padding: 20px;
+  top: 150%;
+  right: 0;
+  background-color: $triangle-background-color;
+  border-radius: 4px;
+}
+
+.droplist-container-relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,31 @@
+.card {
+  &-classic {
+    .header {
+
+    }
+    .body {
+
+    }
+  }
+  &-hippie {
+    .header {
+
+    }
+    .body {
+
+    }
+  }
+  &-space {
+    background-image: url("http://unsplash.it/500/500");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    border-radius: 3px;
+    .body {
+
+    }
+    .footer {
+
+    }
+  }
+}

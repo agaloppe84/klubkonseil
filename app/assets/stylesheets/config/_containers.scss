@@ -1,0 +1,11 @@
+$screens: ("100px": 5%, "768px": 10%, "900px": 15%, "1200px": 20%);
+$container-class-name: "container-classic";
+
+@each $width, $percent in $screens {
+  @media (min-width: $width) {
+    .#{$container-class-name} {
+      padding-left: $percent;
+      padding-right: $percent;
+    }
+  }
+}

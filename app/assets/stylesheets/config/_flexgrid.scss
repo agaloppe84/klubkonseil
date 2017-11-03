@@ -1,0 +1,45 @@
+// FLEXGRID WITH MARGINS //
+// Use data-wrap="center" in HTML to change wrap behaviour //
+
+$flex-columns: 12;
+$flex-gap: 0px;
+$row-class-name: "flexrow";
+$item-class-name: "flexcol";
+$flex-gap-class-name: "flexcol-gap";
+$container-class-name: "container-flexrow";
+$flex-unit: 100% / $flex-columns;
+$screens: ("xs": "100px", "sm": "768px", "md": "900px", "lg": "1200px");
+
+.#{$row-class-name} {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.#{$flex-gap-class-name} {
+  padding: $flex-gap;
+}
+.#{$container-class-name} {
+  padding: $flex-gap;
+}
+
+@each $class, $width in $screens {
+  @media (min-width: $width) {
+    @for $i from 1 through $flex-columns {
+      .#{$item-class-name}-#{$class}-#{$i} {
+        width: calc(#{$flex-unit * $i});
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
